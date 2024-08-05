@@ -44,4 +44,8 @@ ENV NODE_ENV=production
 
 EXPOSE 3000
 
+# Custom entrypoint to load docker secrets
+COPY ./tools/docker/ /
+# Second argument is original entrypoint in image
+ENTRYPOINT ["/docker-entrypoint.sh"]
 CMD [ "dumb-init", "pnpm", "run", "start" ]
